@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="cartao">
+  <h2>Usuários</h2>
+  <table><tr><th>Nome</th><th>Login</th><th>Perfil</th></tr>
+  {% for u in usuarios %}<tr><td>{{ u['nome'] }}</td><td>{{ u['login'] }}</td><td>{{ u['perfil'] }}</td></tr>{% endfor %}
+  </table>
+</div>
+<div class="cartao">
+  <h3>Novo vendedor</h3>
+  <form method="post">
+    <input name="nome" placeholder="Nome" required>
+    <input name="login" placeholder="Login" required>
+    <input name="senha" type="password" placeholder="Senha" required>
+    <button type="submit">Cadastrar</button>
+  </form>
+</div>
+{% endblock %}

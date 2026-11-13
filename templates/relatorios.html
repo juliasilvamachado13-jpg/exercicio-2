@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="cartao"><h3>Estoque baixo</h3><table><tr><th>Produto</th><th>Estoque</th><th>Mínimo</th></tr>
+{% for nome, estoque, minimo in estoque_baixo %}<tr><td>{{ nome }}</td><td>{{ estoque }}</td><td>{{ minimo }}</td></tr>{% endfor %}</table></div>
+<div class="cartao"><h3>Vendas por vendedor</h3><table><tr><th>Vendedor</th><th>Vendas</th><th>Total</th></tr>
+{% for nome, quantidade, total in por_vendedor %}<tr><td>{{ nome }}</td><td>{{ quantidade }}</td><td>R$ {{ '%.2f'|format(total) }}</td></tr>{% endfor %}</table></div>
+<div class="cartao"><h3>Mais vendidos</h3><table><tr><th>Produto</th><th>Quantidade</th></tr>
+{% for nome, quantidade in mais_vendidos %}<tr><td>{{ nome }}</td><td>{{ quantidade }}</td></tr>{% endfor %}</table></div>
+<div class="cartao"><h3>Faturamento por dia</h3><table><tr><th>Dia</th><th>Total</th></tr>
+{% for dia, total in faturamento %}<tr><td>{{ dia }}</td><td>R$ {{ '%.2f'|format(total) }}</td></tr>{% endfor %}</table></div>
+{% endblock %}

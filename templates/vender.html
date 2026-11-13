@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="cartao">
+  <h2>Registrar venda</h2>
+  <form method="post">
+    <select name="produto_id">
+      {% for p in produtos %}<option value="{{ p['id'] }}">{{ p['nome'] }} (estoque {{ p['estoque'] }})</option>{% endfor %}
+    </select>
+    <input name="quantidade" type="number" min="1" value="1" required>
+    <button type="submit">Vender</button>
+  </form>
+</div>
+{% endblock %}

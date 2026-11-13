@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="cartao">
+  <h2>Produtos</h2>
+  <table>
+    <tr><th>Nome</th><th>Preço</th><th>Estoque</th><th>Mínimo</th>{% if session.get('perfil') == 'admin' %}<th></th>{% endif %}</tr>
+    {% for p in produtos %}
+    <tr>
+      <td>{{ p['nome'] }}</td><td>R$ {{ '%.2f'|format(p['preco']) }}</td>
+      <td class="{{ 'alerta' if p['estoque'] <= p['estoque_minimo'] else '' }}">{{ p['estoque'] }}</td><td>{{ p['estoque_minimo'] }}</td>
+      {% if session.get('perfil') == 'admin' %}
+      <td><form method="post" action="{{ url_for('excluir_produto', produto_id=p['id']) }}"><button type="submit">Excluir</button></form></td>
+      {% endif %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% if session.get('perfil') == 'admin' %}
+<div class="cartao">
+  <h3>Novo produto</h3>
+  <form method="post" action="{{ url_for('listar_produtos') }}">
+    <input name="nome" placeholder="Nome" required>
+    <input name="preco" placeholder="Preço" required>
+    <input name="estoque" placeholder="Estoque" required>
+    <input name="estoque_minimo" placeholder="Estoque mínimo" value="5">
+    <button type="submit">Cadastrar</button>
+  </form>
+</div>
+{% endif %}
+{% endblock %}

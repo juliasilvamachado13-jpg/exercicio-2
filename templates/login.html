@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block conteudo %}
+<div class="cartao" style="max-width:360px;margin:40px auto">
+  <h2>Entrar</h2>
+  <form method="post">
+    <label>Login<br><input name="login" required></label><br>
+    <label>Senha<br><input name="senha" type="password" required></label><br>
+    <button type="submit">Entrar</button>
+  </form>
+</div>
+{% endblock %}
